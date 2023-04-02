@@ -41,6 +41,9 @@ module deployment 'deployment.bicep' = {
     name: serviceName
     image: 'mcr.microsoft.com/azuredocs/aks-helloworld:v1'
   }
+  dependsOn: [
+    namespace
+  ]
 }
 
 module service 'service.bicep' = {
@@ -50,6 +53,9 @@ module service 'service.bicep' = {
     nameSpace: nameSpace
     servicename: serviceName
   }
+  dependsOn: [
+    deployment
+  ]
 }
 
 module ingress 'ingress.bicep' = {
@@ -62,6 +68,9 @@ module ingress 'ingress.bicep' = {
     name: serviceName
     secretName: serviceName
   }
+  dependsOn: [
+    service
+  ]
 }
 
 // output testCredAdmin array = AKS.listClusterAdminCredential().kubeconfigs

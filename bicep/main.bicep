@@ -6,6 +6,7 @@ param DeploymentId string = '1'
 param ClusterName string = '01'
 param nameSpace string = 'hello-web-app-routing'
 param serviceName string = 'aks-helloworld'
+param image string = 'mcr.microsoft.com/azuredocs/aks-helloworld:v1'
 param customDomain string = 'psthing.com'
 param titleMessage string = '''
 "Web App Routing ingress" --> Deployed with Azure Bicep
@@ -29,7 +30,7 @@ resource KV 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
 }
 
 module namespace 'namespace.bicep' = {
-  name: 'helloworldapp-namespace'
+  name: '${serviceName}-namespace'
   params: {
     kubeConfig: AKS.listClusterAdminCredential().kubeconfigs[0].value
     nameSpace: nameSpace
@@ -37,12 +38,12 @@ module namespace 'namespace.bicep' = {
 }
 
 module deployment 'deployment.bicep' = {
-  name: 'helloworldapp-deployment'
+  name: '${serviceName}-deployment'
   params: {
     kubeConfig: AKS.listClusterAdminCredential().kubeconfigs[0].value
     nameSpace: nameSpace
     name: serviceName
-    image: 'mcr.microsoft.com/azuredocs/aks-helloworld:v1'
+    image: image
     titleMessage: titleMessage
   }
   dependsOn: [
@@ -51,7 +52,7 @@ module deployment 'deployment.bicep' = {
 }
 
 module service 'service.bicep' = {
-  name: 'helloworldapp-service'
+  name: '${serviceName}-service'
   params: {
     kubeConfig: AKS.listClusterAdminCredential().kubeconfigs[0].value
     nameSpace: nameSpace
@@ -63,7 +64,7 @@ module service 'service.bicep' = {
 }
 
 module ingress 'ingress.bicep' = {
-  name: 'helloworldapp-ingress'
+  name: '${serviceName}-ingress'
   params: {
     kubeConfig: AKS.listClusterAdminCredential().kubeconfigs[0].value
     nameSpace: nameSpace

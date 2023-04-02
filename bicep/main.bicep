@@ -8,7 +8,7 @@ param nameSpace string = 'hello-web-app-routing'
 param serviceName string = 'aks-helloworld'
 param customDomain string = 'psthing.com'
 param titleMessage string = '''
-"Web App Routing ingress" --> Deployed with Azure Bicep ----> https://aka.ms/bicep
+"Web App Routing ingress" --> Deployed with Azure Bicep
 '''
 
 var Deployment = '${prefix}-${orgName}-${appName}-${Environment}${DeploymentId}'

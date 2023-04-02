@@ -3,6 +3,7 @@ param kubeConfig string
 param nameSpace string
 param name string
 param image string
+param titleMessage string
 
 import 'kubernetes@1.0.0' with {
   namespace: nameSpace
@@ -40,7 +41,7 @@ resource appsDeployment 'apps/Deployment@v1' = {
             env: [
               {
                 name: 'TITLE'
-                value: 'Welcome to Azure Kubernetes Service (AKS)'
+                value: titleMessage
               }
             ]
           }

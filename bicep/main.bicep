@@ -7,6 +7,9 @@ param ClusterName string = '01'
 param nameSpace string = 'hello-web-app-routing'
 param serviceName string = 'aks-helloworld'
 param customDomain string = 'psthing.com'
+param titleMessage string = '''
+"Web App Routing ingress" --> Deployed with Azure Bicep ----> https://aka.ms/bicep
+'''
 
 var Deployment = '${prefix}-${orgName}-${appName}-${Environment}${DeploymentId}'
 var hubDeployment = '${prefix}-${orgName}-${appName}-P0'
@@ -40,6 +43,7 @@ module deployment 'deployment.bicep' = {
     nameSpace: nameSpace
     name: serviceName
     image: 'mcr.microsoft.com/azuredocs/aks-helloworld:v1'
+    titleMessage: titleMessage
   }
   dependsOn: [
     namespace
@@ -54,7 +58,7 @@ module service 'service.bicep' = {
     servicename: serviceName
   }
   dependsOn: [
-    deployment
+    namespace
   ]
 }
 
@@ -69,7 +73,7 @@ module ingress 'ingress.bicep' = {
     secretName: serviceName
   }
   dependsOn: [
-    service
+    namespace
   ]
 }
 

@@ -19,6 +19,9 @@ param Environment string
 param DeploymentId string
 @description('short name for the cluster e.g. 01 or 02 or AKS01 or AKS02')
 param ClusterName string
+@description('short name for the keyvault e.g. VLT01 or VLT02')
+param VaultName string
+
 
 @description('used with the azuredocs/aks-helloworld:v1 to display custom message')
 param titleMessage string
@@ -32,7 +35,7 @@ resource AKS 'Microsoft.ContainerService/managedClusters@2022-11-02-preview' exi
 }
 
 resource KV 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
-  name: '${hubDeployment}-kvVLT01'
+  name: '${hubDeployment}-kv${VaultName}'
   scope: resourceGroup(hubRG)
 
   resource mySecret 'secrets' existing = {

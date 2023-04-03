@@ -75,7 +75,7 @@ $splat = @{
     TemplateParameterFile = "${ParamsBase}.json" # bicepparam compilation not supported as yet
 }
 
-# test out biep params, manually build
+# test out bicep params, manually build
 bicep build-params "${ParamsBase}.bicepparam"
 New-AzResourceGroupDeployment @splat -Verbose
 ```

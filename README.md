@@ -42,7 +42,7 @@ resource coreNamespace 'core/Namespace@v1' = {
   }
 }
 ```
-- Example using bicepparam
+###### Example using bicepparam (replaces json format)
 
 ```bicep
 using '../../bicep/main.bicep'

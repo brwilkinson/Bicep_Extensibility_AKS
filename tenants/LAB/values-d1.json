@@ -24,7 +24,7 @@
       "value": "hello-web-app-routing"
     },
     "serviceName": {
-      "value": "aks-helloworld2"
+      "value": "aks-helloworld"
     },
     "image": {
       "value": "mcr.microsoft.com/azuredocs/aks-helloworld:v1"

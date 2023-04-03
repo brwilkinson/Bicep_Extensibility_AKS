@@ -9,7 +9,7 @@ param ClusterName = '01'
 param VaultName = 'VLT01'
 
 param nameSpace= 'hello-web-app-routing'
-param serviceName= 'aks-helloworld2'
+param serviceName= 'aks-helloworld'
 param image= 'mcr.microsoft.com/azuredocs/aks-helloworld:v1'
 param customDomain= 'psthing.com'
 param titleMessage= '''

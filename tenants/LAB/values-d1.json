@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "prefix": {
+      "value": "AEU1"
+    },
+    "orgName": {
+      "value": "PE"
+    },
+    "appName": {
+      "value": "CTL"
+    },
+    "Environment": {
+      "value": "D"
+    },
+    "DeploymentId": {
+      "value": "1"
+    },
+    "ClusterName": {
+      "value": "01"
+    },
+    "nameSpace": {
+      "value": "hello-web-app-routing"
+    },
+    "serviceName": {
+      "value": "aks-helloworld2"
+    },
+    "image": {
+      "value": "mcr.microsoft.com/azuredocs/aks-helloworld:v1"
+    },
+    "customDomain": {
+      "value": "psthing.com"
+    },
+    "titleMessage": {
+      "value": "\"Web App Routing ingress\" --> Deployed with Azure Bicep\r\n"
+    }
+  }
+}

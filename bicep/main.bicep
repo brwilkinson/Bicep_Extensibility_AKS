@@ -1,16 +1,27 @@
-param prefix string = 'AEU1'
-param orgName string = 'PE'
-param appName string = 'CTL'
-param Environment string = 'D'
-param DeploymentId string = '1'
-param ClusterName string = '01'
-param nameSpace string = 'hello-web-app-routing'
-param serviceName string = 'aks-helloworld'
-param image string = 'mcr.microsoft.com/azuredocs/aks-helloworld:v1'
-param customDomain string = 'psthing.com'
-param titleMessage string = '''
-"Web App Routing ingress" --> Deployed with Azure Bicep
-'''
+@description('kubernetes namespace for app')
+param nameSpace string
+@description('app Name used to describe the service')
+param serviceName string
+@description('base image to use')
+param image string
+@description('your external custom DNS, zone registered in Azure DNS')
+param customDomain string
+
+@description('region prefix e.g. acu1 or aeu1')
+param prefix string
+@description('your org name e.g. PE or HR or INF 2 or 3 letter org name')
+param orgName string
+@description('your org name e.g. TST or ADF or CTL 2 or 3 letter org name')
+param appName string
+@description('Environment e.g. d,t,u or p')
+param Environment string
+@description('Id for enviroment e.g. 1,2,3,4,5,6,7,8')
+param DeploymentId string
+@description('short name for the cluster e.g. 01 or 02 or AKS01 or AKS02')
+param ClusterName string
+
+@description('used with the azuredocs/aks-helloworld:v1 to display custom message')
+param titleMessage string
 
 var Deployment = '${prefix}-${orgName}-${appName}-${Environment}${DeploymentId}'
 var hubDeployment = '${prefix}-${orgName}-${appName}-P0'

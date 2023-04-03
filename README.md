@@ -12,7 +12,7 @@
 
 [AKS Ingress - Web Application Routing](https://learn.microsoft.com/en-us/azure/aks/web-app-routing?tabs=with-osm)
 
-#### bicepconfi.json for preview features
+#### bicepconfig.json for preview features
 ```json
 {
   "experimentalFeaturesEnabled": {

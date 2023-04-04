@@ -79,3 +79,63 @@ $splat = @{
 bicep build-params "${ParamsBase}.bicepparam"
 New-AzResourceGroupDeployment @splat -Verbose
 ```
+
+### Execute deployment...
+
+```powershell
+pwsh> . .\Bicep_Extensibility_AKS\setup_deploy.ps1
+
+WARNING: Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!
+VERBOSE: Using Bicep v0.15.152
+WARNING: WARNING: Symbolic name support in ARM is experimental, and should be enabled for testing purposes only. Do not enable this setting for any production usage, or you may be unexpectedly broken at any time!
+VERBOSE: Performing the operation "Creating Deployment" on target "AEU1-PE-CTL-RG-D1".
+VERBOSE: 9:35:36 PM - Template is valid.
+VERBOSE: 9:35:37 PM - Create template deployment 'Namespace_Bicep'
+VERBOSE: 9:35:37 PM - Checking deployment status in 5 seconds
+VERBOSE: 9:35:43 PM - Resource Microsoft.Resources/deployments 'aks-helloworld-namespace' provisioning status is running
+VERBOSE: 9:35:43 PM - Resource  '' provisioning status is succeeded
+VERBOSE: 9:35:43 PM - Resource Microsoft.ContainerService/managedClusters 'AEU1-PE-CTL-D1-aks01' provisioning status is succeededVERBOSE: 9:35:43 PM - Resource Microsoft.ContainerService/managedClusters 'AEU1-PE-CTL-D1-aks01' provisioning status is succeeded
+VERBOSE: 9:35:43 PM - Resource Microsoft.KeyVault/vaults/secrets 'AEU1-PE-CTL-P0-kvVLT01/aks-helloworld' provisioning status is succeeded
+VERBOSE: 9:35:43 PM - Resource Microsoft.KeyVault/vaults 'AEU1-PE-CTL-P0-kvVLT01' provisioning status is succeededVERBOSE: 9:35:43 PM - Checking deployment status in 13 seconds
+VERBOSE: 9:35:59 PM - Resource Microsoft.Resources/deployments 'aks-helloworld-deployment' provisioning status is running
+VERBOSE: 9:35:59 PM - Resource  '' provisioning status is succeeded
+VERBOSE: 9:35:59 PM - Resource Microsoft.Resources/deployments 'aks-helloworld-ingress' provisioning status is running
+VERBOSE: 9:35:59 PM - Resource  '' provisioning status is succeeded
+VERBOSE: 9:35:59 PM - Resource Microsoft.Resources/deployments 'aks-helloworld-service' provisioning status is running
+VERBOSE: 9:35:59 PM - Resource  '' provisioning status is succeeded
+VERBOSE: 9:35:59 PM - Resource Microsoft.Resources/deployments 'aks-helloworld-namespace' provisioning status is succeeded
+VERBOSE: 9:35:59 PM - Checking deployment status in 14 seconds
+VERBOSE: 9:36:15 PM - Resource Microsoft.Resources/deployments 'aks-helloworld-deployment' provisioning status is succeeded
+VERBOSE: 9:36:15 PM - Resource Microsoft.Resources/deployments 'aks-helloworld-ingress' provisioning status is succeeded
+VERBOSE: 9:36:15 PM - Resource Microsoft.Resources/deployments 'aks-helloworld-service' provisioning status is succeeded
+
+DeploymentName          : Namespace_Bicep
+ResourceGroupName       : AEU1-PE-CTL-RG-D1
+ProvisioningState       : Succeeded
+Timestamp               : 4/4/2023 4:36:11 AM
+Mode                    : Incremental
+TemplateLink            : 
+Parameters              : 
+                          Name             Type                       Value     
+                          ===============  =========================  ==========
+                          nameSpace        String                     "hello-web-app-routing"
+                          serviceName      String                     "aks-helloworld"
+                          image            String                     "mcr.microsoft.com/azuredocs/aks-helloworld:v1"
+                          customDomain     String                     "psthing.com"
+                          prefix           String                     "AEU1"
+                          orgName          String                     "PE"
+                          appName          String                     "CTL"
+                          environment      String                     "D"
+                          deploymentId     String                     "1"
+                          clusterName      String                     "01"
+                          vaultName        String                     "VLT01"
+                          titleMessage     String                     "\"Web App Routing ingress\" --> Deployed with Azure Bicep\r\n"
+
+Outputs                 : 
+                          Name             Type                       Value
+                          ===============  =========================  ==========
+                          hostname         String                     "https://aks-helloworld.psthing.com"
+
+```
+
+![Deployed](./docs/deployed_image.png)

@@ -20,6 +20,9 @@
     "ClusterName": {
       "value": "01"
     },
+    "VaultName": {
+      "value": "VLT01"
+    },
     "nameSpace": {
       "value": "hello-web-app-routing"
     },

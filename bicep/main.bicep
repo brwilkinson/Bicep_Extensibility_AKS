@@ -94,3 +94,4 @@ module ingress 'ingress.bicep' = {
 
 // output testCredAdmin array = AKS.listClusterAdminCredential().kubeconfigs
 // output testCredUser array = AKS.listClusterUserCredential().kubeconfigs
+output hostname string= 'https://${serviceName}.${customDomain}'

@@ -1,4 +1,4 @@
-using '../../bicep/main.bicep'
+using '../../bicep/main2.bicep'
 
 param prefix = 'AEU1'
 param orgName = 'PE'

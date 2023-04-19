@@ -1,11 +1,11 @@
 <# 
 setx.exe 'BICEP_TRACE' '1'
-setx.exe 'BICEP_TRACE_LEVEL' 'Verbose'
+setx.exe 'BICEP_TRACING_VERBOSITY' 'Full'
 Write-Output 'requires restart'
 #>
 
 $Base = $PSScriptRoot
-$ParamsBase = "$Base\tenants\LAB\values-d1"
+$ParamsBase = "$Base\tenants\CTL\values-d1"
 $splat = @{
     Name                  = 'Namespace_Bicep'
     ResourceGroupName     = 'AEU1-PE-CTL-RG-D1'
@@ -13,7 +13,7 @@ $splat = @{
     TemplateParameterFile = "${ParamsBase}.json" # bicepparam compilation not supported as yet
 }
 
-# test out biep params, manually build
+# test out bicep params, manually build
 bicep build-params "${ParamsBase}.bicepparam"
 New-AzResourceGroupDeployment @splat -Verbose
 

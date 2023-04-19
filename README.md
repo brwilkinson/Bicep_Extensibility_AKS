@@ -6,18 +6,23 @@
 
 ###### Docs
 
-[Bicep Extensibility - Experminental Feature](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config#enable-experimental-features)
+- [Bicep Extensibility - Experminental Feature](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-config#enable-experimental-features)
 
-[Define Application in Bicep](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-bicep-extensibility-kubernetes-provider?tabs=PowerShell%2Cazure-powershell#add-the-application-definition)
+- [Define Application in Bicep](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-bicep-extensibility-kubernetes-provider?tabs=PowerShell%2Cazure-powershell#add-the-application-definition)
 
-[AKS Ingress - Web Application Routing](https://learn.microsoft.com/en-us/azure/aks/web-app-routing?tabs=with-osm)
+- [AKS Ingress - Web Application Routing](https://learn.microsoft.com/en-us/azure/aks/web-app-routing?tabs=with-osm)
+
+- [Bicep Custom Types](aka.ms/bicepCustomTypes)
 
 #### bicepconfig.json for preview features
 ```json
 {
   "experimentalFeaturesEnabled": {
     "paramsFiles": true,
-    "extensibility": true
+    "extensibility": true,
+    "symbolicNameCodegen": true,
+    "userDefinedTypes": true,
+    "resourceTypedParamsAndOutputs": true
   }
 }
 ```

@@ -2,7 +2,9 @@
   "experimentalFeaturesEnabled": {
     "paramsFiles": true,
     "extensibility": true,
-    "symbolicNameCodegen": true
+    "symbolicNameCodegen": true,
+    "userDefinedTypes": true,
+    "resourceTypedParamsAndOutputs": true
   },
   "analyzers": {
     "core": {

@@ -4,17 +4,22 @@ setx.exe 'BICEP_TRACING_VERBOSITY' 'Full'
 Write-Output 'requires restart'
 #>
 
+param (
+    [switch]$whatif
+)
+
 $Base = $PSScriptRoot
-$ParamsBase = "$Base\tenants\CTL\values-d1"
 $splat = @{
     Name                  = 'Namespace_Bicep'
-    ResourceGroupName     = 'AEU1-PE-CTL-RG-D1'
+    ResourceGroupName     = 'AEU1-PE-AKS-RG-D2'
     TemplateFile          = "$Base\bicep\main.bicep"
-    TemplateParameterFile = "${ParamsBase}.json" # bicepparam compilation not supported as yet
+    TemplateParameterFile = "$Base\tenants\AKS\values-d2.bicepparam"
 }
 
+# no longer required with az.resources 6.6.1 part of AZ 9.7.0
 # test out bicep params, manually build
-bicep build-params "${ParamsBase}.bicepparam"
-New-AzResourceGroupDeployment @splat -Verbose
+# bicep build-params "$Base\tenants\AKS\values-d2.bicepparam"
+
+New-AzResourceGroupDeployment @splat -Verbose @PSBoundParameters
 
 # az deployment group create -g $splat.ResourceGroupName -n $splat.Name --template-file $splat.TemplateFile --verbose

@@ -9,9 +9,15 @@
   "analyzers": {
     "core": {
       "rules": {
-        "no-unused-params": {
-          "level": "warning"
-        }
+      //   "no-unused-vars": {
+      //     "level": "off"
+      //   },
+      //   "no-unused-params": {
+      //     "level": "off"
+      //   },
+      //   "no-unused-existing-resources": {
+      //     "level": "off"
+      //   }
       }
     }
   }

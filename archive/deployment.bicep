@@ -1,38 +1,46 @@
 @secure()
 param kubeConfig string
-param nameSpace string
-param name string
-param image string
-param titleMessage string
+
+param AKSApp AKSAppDef
+
+type AKSAppDef = {
+  @description('The object to define the Deployment')
+  nameSpace: string
+  serviceName: string
+  image: string
+  customDomain: string
+  titleMessage: string
+  clusterName: string
+}
 
 import 'kubernetes@1.0.0' with {
-  namespace: nameSpace
+  namespace: AKSApp.nameSpace
   kubeConfig: kubeConfig
 }
 
 resource appsDeployment 'apps/Deployment@v1' = {
   metadata: {
-    name: name
-    namespace: nameSpace
+    name: AKSApp.serviceName
+    namespace: AKSApp.nameSpace
   }
   spec: {
     replicas: 1
     selector: {
       matchLabels: {
-        app: name
+        app: AKSApp.serviceName
       }
     }
     template: {
       metadata: {
         labels: {
-          app: name
+          app: AKSApp.serviceName
         }
       }
       spec: {
         containers: [
           {
-            name: name
-            image: image
+            name: AKSApp.serviceName
+            image: AKSApp.image
             ports: [
               {
                 containerPort: 80
@@ -41,7 +49,7 @@ resource appsDeployment 'apps/Deployment@v1' = {
             env: [
               {
                 name: 'TITLE'
-                value: titleMessage
+                value: AKSApp.titleMessage
               }
             ]
           }

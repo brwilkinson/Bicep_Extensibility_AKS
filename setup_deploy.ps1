@@ -1,5 +1,5 @@
 <# 
-setx.exe 'BICEP_TRACE' '1'
+setx.exe 'BICEP_TRACING_ENABLED' '1'
 setx.exe 'BICEP_TRACING_VERBOSITY' 'Full'
 Write-Output 'requires restart'
 #>

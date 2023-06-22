@@ -1,4 +1,15 @@
-param DeploymentDef {
+param DeploymentHub DeploymentHubType
+param DeploymentDef DeploymentDefType
+param AKSAppDefs AKSAppType[]
+
+type DeploymentHubType = {
+  @description('The object to define the Hub Deployment')
+  prefix: string
+  orgName: string
+  appName: string
+}
+
+type DeploymentDefType = {
   @description('The object to define the Deployment')
   prefix: string
   orgName: string
@@ -7,16 +18,7 @@ param DeploymentDef {
   DeploymentId: string
 }
 
-param DeploymentHubDef {
-  @description('The object to define the Hub Deployment')
-  prefix: string
-  orgName: string
-  appName: string
-}
-
-param AKSAppDefs AKSAppDef[]
-
-type AKSAppDef = {
+type AKSAppType = {
   @description('The object to define the Deployment')
   nameSpace: string
   serviceName: string
@@ -27,11 +29,14 @@ type AKSAppDef = {
   tlsCertName: string
 }
 
+
 @description('short name for the keyvault e.g. VLT01 or VLT02')
 param VaultName string
 
 // @description('test loadjsoncontent()')
 // param Global object
+
+// var test = DeploymentHub
 
 var Deployment = '${DeploymentDef.prefix}-${DeploymentDef.orgName}-${DeploymentDef.appName}-${DeploymentDef.Environment}${DeploymentDef.DeploymentId}'
 

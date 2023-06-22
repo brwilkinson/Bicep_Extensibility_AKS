@@ -7,8 +7,7 @@ param DeploymentDef = {
   orgName: 'PE'
   prefix: 'AEU1'
 }
-
-param DeploymentHubDef ={
+param DeploymentHub ={
   appName: 'HUB'
   orgName: 'PE'
   prefix: 'ACU1'

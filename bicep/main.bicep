@@ -49,7 +49,7 @@ module AKSApp 'AKSApp.bicep' = [for (App, index) in AKSAppDefs: {
   params: {
     AKSApp: App
     // DeploymentDef: DeploymentDef
-    DeploymentHubDef: DeploymentHubDef
+    DeploymentHubDef: DeploymentHub
     VaultName: VaultName
     kubeConfig: AKS[index].listClusterAdminCredential().kubeconfigs[0].value
   }

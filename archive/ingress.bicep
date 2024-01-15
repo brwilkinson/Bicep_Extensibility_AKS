@@ -19,7 +19,7 @@ param hubDeployment string
 param VaultName string
 param hostname string
 
-import 'kubernetes@1.0.0' with {
+provider 'kubernetes@1.0.0' with {
   namespace: AKSApp.nameSpace
   kubeConfig: kubeConfig
 }

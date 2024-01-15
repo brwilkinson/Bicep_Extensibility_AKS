@@ -13,7 +13,7 @@ type AKSAppDef = {
   clusterName: string
 }
 
-import 'kubernetes@1.0.0' with {
+provider 'kubernetes@1.0.0' with {
   namespace: 'default'
   kubeConfig: kubeConfig
 }

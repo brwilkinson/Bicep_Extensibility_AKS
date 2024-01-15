@@ -1,9 +1,11 @@
 {
   "experimentalFeaturesEnabled": {
-    "paramsFiles": true,
+    // "paramsFiles": true,
     "extensibility": true,
+    "compileTimeImports": true,
     "symbolicNameCodegen": true,
     "userDefinedTypes": true,
+    "userDefinedFunctions": true,
     "resourceTypedParamsAndOutputs": true
   },
   "analyzers": {

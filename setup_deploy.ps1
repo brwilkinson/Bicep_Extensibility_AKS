@@ -5,13 +5,17 @@ Write-Output 'requires restart'
 #>
 
 param (
-    [switch]$whatif
+    [switch]$whatif,
+
+    $ResourceGroupName = 'AEU1-PE-AKS-RG-D2',
+
+    $ResourceGroupLocation = 'EastUS2'
 )
 
 $Base = $PSScriptRoot
 $splat = @{
     Name                  = 'Namespace_Bicep'
-    ResourceGroupName     = 'AEU1-PE-AKS-RG-D2'
+    ResourceGroupName     = $ResourceGroupName
     TemplateFile          = "$Base\bicep\main.bicep"
     TemplateParameterFile = "$Base\tenants\AKS\values-d2.bicepparam"
 }
@@ -20,6 +24,7 @@ $splat = @{
 # test out bicep params, manually build
 # bicep build-params "$Base\tenants\AKS\values-d2.bicepparam"
 
+New-AzResourceGroup -Name $ResourceGroupName -Location $ResourceGroupLocation -Verbose
 New-AzResourceGroupDeployment @splat -Verbose @PSBoundParameters
 
 # az deployment group create -g $splat.ResourceGroupName -n $splat.Name --template-file $splat.TemplateFile --verbose

@@ -1,31 +1,9 @@
-// param DeploymentDef {
-//   @description('The object to define the Deployment')
-//   prefix: string
-//   orgName: string
-//   appName: string
-//   Environment: string
-//   DeploymentId: string
-// }
+import {DeploymentT,DeploymentHubT,DeploymentName,DeploymentHubName,DeploymentHubRGName} from '../bicepT/deployment.bicep'
+import {AKSAppDef} from '../bicepT/resources.bicep'
 
-param DeploymentHubDef {
-  @description('The object to define the Hub Deployment')
-  prefix: string
-  orgName: string
-  appName: string
-}
+param DeploymentHub DeploymentHubT
 
 param AKSApp AKSAppDef
-
-type AKSAppDef = {
-  @description('The object to define the Deployment')
-  nameSpace: string
-  serviceName: string
-  image: string
-  customDomain: string
-  titleMessage: string
-  clusterName: string
-  tlsCertName: string
-}
 
 @description('short name for the keyvault e.g. VLT01 or VLT02')
 param VaultName string
@@ -33,13 +11,11 @@ param VaultName string
 @secure()
 param kubeConfig string
 
-
-// var Deployment = '${DeploymentDef.prefix}-${DeploymentDef.orgName}-${DeploymentDef.appName}-${DeploymentDef.Environment}${DeploymentDef.DeploymentId}'
-var hubDeployment = '${DeploymentHubDef.prefix}-${DeploymentHubDef.orgName}-${DeploymentHubDef.appName}-P0'
-var hubRG = '${DeploymentHubDef.prefix}-${DeploymentHubDef.orgName}-${DeploymentHubDef.appName}-RG-P0'
+var hubDeployment = DeploymentHubName(DeploymentHub)
+var hubRG = DeploymentHubRGName(DeploymentHub)
 
 var hostname = '${AKSApp.serviceName}.${AKSApp.customDomain}'
-var secretName = AKSApp.tlsCertName
+var secretName = 'keyvault-${hostname}' // This is a required name format
 
 resource KV 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
   name: '${hubDeployment}-kv${VaultName}'
@@ -50,7 +26,7 @@ resource KV 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
   }
 }
 
-import 'kubernetes@1.0.0' with {
+provider 'kubernetes@1.0.0' with {
   namespace: 'default'
   kubeConfig: kubeConfig
 }
@@ -131,7 +107,7 @@ resource networkingK8sIoIngress 'networking.k8s.io/Ingress@v1' = {
     annotations: {
       'kubernetes.azure.com/tls-cert-keyvault-uri': KV::mySecret.properties.secretUri
     }
-    name: AKSApp.serviceName
+    name: hostname
     namespace: AKSApp.nameSpace
   }
   spec: {

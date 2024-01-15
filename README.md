@@ -2,7 +2,12 @@
 
 ###### Goal
 - Migrate an Helm Chart to Bicep format to test Bicep extensibility
-- Use the Bicepparams experimentatal feature for params, that would replace the values.yaml from Helm 
+- Use the Bicepparams experimentatal feature for params, that would replace the values.yaml from Helm
+- Use the following new features
+    - provider
+    - import
+    - export
+- Export and Import user defined types and functions. 
 
 ###### Docs
 

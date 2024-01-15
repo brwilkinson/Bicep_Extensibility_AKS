@@ -1,6 +1,6 @@
 using '../../bicep/main.bicep'
 
-param DeploymentDef = {
+param Deployment = {
   DeploymentId: '2'
   Environment: 'D'
   appName: 'AKS'
@@ -8,13 +8,13 @@ param DeploymentDef = {
   prefix: 'AEU1'
 }
 
-param DeploymentHubDef ={
+param DeploymentHub ={
   appName: 'HUB'
   orgName: 'PE'
   prefix: 'ACU1'
 }
 
-param AKSAppDefs = [
+param AKSApp = [
   {
     customDomain: 'aginow.net'
     image: 'mcr.microsoft.com/azuredocs/aks-helloworld:v1'
@@ -22,7 +22,6 @@ param AKSAppDefs = [
     serviceName: 'aks-helloworld'
     titleMessage: '"Web App Routing ingress" --> Deployed with Azure Bicep'
     clusterName: '01'
-    tlsCertName: 'agic01-psthing-com'
   }
 ]
 

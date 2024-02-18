@@ -4,7 +4,6 @@
     "extensibility": true,
     "compileTimeImports": true,
     "symbolicNameCodegen": true,
-    "userDefinedTypes": true,
     "userDefinedFunctions": true,
     "resourceTypedParamsAndOutputs": true
   },
